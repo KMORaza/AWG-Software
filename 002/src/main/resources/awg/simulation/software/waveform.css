@@ -1,0 +1,181 @@
+/* Root container (VBox) */
+.root {
+    -fx-background-color: #C0C0C0;
+    -fx-padding: 10;
+    -fx-border-color: #FFFFFF #808080 #808080 #FFFFFF;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+}
+
+/* TabPane */
+.tab-pane {
+    -fx-background-color: #C0C0C0;
+    -fx-border-color: #FFFFFF #808080 #808080 #FFFFFF;
+    -fx-border-width: 2;
+    -fx-padding: 5;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: #C0C0C0;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #C0C0C0;
+    -fx-border-color: #FFFFFF #808080 #808080 #FFFFFF;
+    -fx-border-width: 2;
+    -fx-padding: 5 10 5 10;
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #D4D0C8;
+    -fx-border-color: #FFFFFF #808080 #C0C0C0 #C0C0C0;
+}
+
+/* Hide tab close button */
+.tab-pane .tab .tab-close-button {
+    -fx-background-color: transparent;
+    -fx-shape: none;
+    -fx-padding: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    visibility: hidden;
+}
+
+/* Button and ToggleButton */
+.button, .toggle-button {
+    -fx-background-color: #C0C0C0;
+    -fx-border-color: #FFFFFF #808080 #808080 #FFFFFF;
+    -fx-border-width: 2;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+    -fx-padding: 5 10 5 10;
+    -fx-effect: none;
+}
+
+.button:hover, .toggle-button:hover {
+    -fx-background-color: #D4D0C8;
+}
+
+.button:pressed, .toggle-button:pressed, .toggle-button:selected {
+    -fx-border-color: #808080 #FFFFFF #FFFFFF #808080;
+    -fx-background-color: #A9A9A9;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #808080 #FFFFFF #FFFFFF #808080;
+    -fx-border-width: 2;
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #C0C0C0;
+    -fx-border-color: #808080 #FFFFFF #FFFFFF #808080;
+    -fx-border-width: 2;
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+}
+
+/* TextField */
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #808080 #FFFFFF #FFFFFF #808080;
+    -fx-border-width: 2;
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: #000000;
+    -fx-pref-width: 100px;
+}
+
+/* Slider */
+.slider {
+    -fx-background-color: #C0C0C0;
+}
+
+.slider .track {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #808080 #FFFFFF #FFFFFF #808080;
+    -fx-border-width: 2;
+}
+
+.slider .thumb {
+    -fx-background-color: #C0C0C0;
+    -fx-border-color: #FFFFFF #808080 #808080 #FFFFFF;
+    -fx-border-width: 2;
+}
+
+/* CheckBox */
+.check-box {
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: #000000;
+}
+
+.check-box .box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #808080 #FFFFFF #FFFFFF #808080;
+    -fx-border-width: 2;
+}
+
+/* Label */
+.label {
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: #000000;
+    -fx-font-weight: normal;
+}
+
+.title-label {
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 16px;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+}
+
+/* Canvas */
+.canvas {
+    -fx-background-color: #000000;
+    -fx-border-color: #808080 #FFFFFF #FFFFFF #808080, #00FF00;
+    -fx-border-width: 2, 1;
+    -fx-border-style: solid, solid;
+    -fx-border-insets: 0, 3;
+    -fx-effect: dropshadow(gaussian, #00FF00, 5, 0.2, 0, 0);
+}
+
+/* HBox and VBox */
+.hbox, .vbox {
+    -fx-background-color: #C0C0C0;
+    -fx-padding: 5;
+}
+
+/* Sunken panel */
+.sunken-panel {
+    -fx-background-color: #C0C0C0;
+    -fx-border-color: #808080 #FFFFFF #FFFFFF #808080;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+}
+
+/* Tooltip */
+.tooltip {
+    -fx-background-color: #FFFFE1;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Consolas", "Courier New", "MS Sans Serif", monospace;
+    -fx-font-size: 12px;
+    -fx-border-color: #000000;
+    -fx-border-width: 1;
+}

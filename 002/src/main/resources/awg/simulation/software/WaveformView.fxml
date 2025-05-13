@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awg.simulation.software.MainController" spacing="10" styleClass="root">
+    <Label text="Arbitrary Waveform Generator" styleClass="title-label"/>
+    <Separator/>
+    <TabPane styleClass="tab-pane">
+        <Tab text="Waveform Design" closable="false">
+            <HBox spacing="10" styleClass="hbox">
+                <VBox spacing="10" styleClass="vbox, sunken-panel">
+                    <Label text="Waveform Selection" styleClass="label"/>
+                    <ComboBox fx:id="waveformType" promptText="Select Waveform" styleClass="combo-box">
+                        <tooltip>
+                            <Tooltip text="Choose the waveform type or select Custom for drawing/CSV"/>
+                        </tooltip>
+                    </ComboBox>
+                    <Separator/>
+                    <Label text="Waveform Parameters" styleClass="label"/>
+                    <GridPane hgap="5" vgap="5">
+                        <Label text="Amplitude:" styleClass="label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <Slider fx:id="amplitudeSlider" min="0.1" max="2.0" value="1.0" styleClass="slider" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        <TextField fx:id="amplitudeField" styleClass="text-field" GridPane.rowIndex="0" GridPane.columnIndex="2">
+                            <tooltip>
+                                <Tooltip text="Amplitude (0.1 to 2.0)"/>
+                            </tooltip>
+                        </TextField>
+                        <Label text="Frequency (Hz):" styleClass="label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <Slider fx:id="frequencySlider" min="1" max="10000" value="1000" styleClass="slider" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <TextField fx:id="frequencyField" styleClass="text-field" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                            <tooltip>
+                                <Tooltip text="Frequency in Hz (1 to 10,000)"/>
+                            </tooltip>
+                        </TextField>
+                        <Label text="Phase (degrees):" styleClass="label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <Slider fx:id="phaseSlider" min="0" max="360" value="0" styleClass="slider" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        <TextField fx:id="phaseField" styleClass="text-field" GridPane.rowIndex="2" GridPane.columnIndex="2">
+                            <tooltip>
+                                <Tooltip text="Phase shift in degrees (0 to 360)"/>
+                            </tooltip>
+                        </TextField>
+                    </GridPane>
+                    <Separator/>
+                    <Label text="Harmonic Settings" styleClass="label"/>
+                    <GridPane hgap="5" vgap="5">
+                        <Label text="Harmonic Amp:" styleClass="label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <Slider fx:id="harmonic1AmpSlider" min="0" max="1.0" value="0" styleClass="slider" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        <TextField fx:id="harmonic1AmpField" styleClass="text-field" GridPane.rowIndex="0" GridPane.columnIndex="2">
+                            <tooltip>
+                                <Tooltip text="Amplitude of harmonic (0 to 1.0)"/>
+                            </tooltip>
+                        </TextField>
+                        <Label text="Harmonic Freq Mult:" styleClass="label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <Slider fx:id="harmonic1FreqSlider" min="1" max="10" value="2" styleClass="slider" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <TextField fx:id="harmonic1FreqField" styleClass="text-field" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                            <tooltip>
+                                <Tooltip text="Frequency multiplier for harmonic (1 to 10)"/>
+                            </tooltip>
+                        </TextField>
+                    </GridPane>
+                    <Separator/>
+                    <Label text="Custom Waveform" styleClass="label"/>
+                    <HBox spacing="5">
+                        <Button fx:id="importCsvButton" text="Import CSV" onAction="#importCsv" styleClass="button">
+                            <tooltip>
+                                <Tooltip text="Import waveform from CSV file"/>
+                            </tooltip>
+                        </Button>
+                        <ToggleButton fx:id="drawToggle" text="Draw Mode" onAction="#toggleDrawMode" styleClass="button">
+                            <tooltip>
+                                <Tooltip text="Toggle to draw custom waveform on canvas"/>
+                            </tooltip>
+                        </ToggleButton>
+                        <Button fx:id="clearCanvasButton" text="Clear Canvas" onAction="#clearCanvas" styleClass="button">
+                            <tooltip>
+                                <Tooltip text="Clear drawn points from canvas"/>
+                            </tooltip>
+                        </Button>
+                    </HBox>
+                </VBox>
+                <VBox spacing="10" styleClass="vbox">
+                    <Label text="Waveform Preview" styleClass="label"/>
+                    <Canvas fx:id="waveformCanvas" width="600" height="300" styleClass="canvas"/>
+                </VBox>
+            </HBox>
+        </Tab>
+        <Tab text="Sampling and Resolution" closable="false">
+            <VBox spacing="10" styleClass="vbox">
+                <Label text="Sampling Rate (Hz):" styleClass="label"/>
+                <Slider fx:id="samplingRateSlider" min="1000" max="1000000000" value="1000000" styleClass="slider"/>
+                <TextField fx:id="samplingRateField" styleClass="text-field"/>
+                <Label text="Vertical Resolution (bits):" styleClass="label"/>
+                <ComboBox fx:id="resolutionCombo" promptText="Select Resolution" styleClass="combo-box"/>
+                <Label text="Duration (s) or Samples:" styleClass="label"/>
+                <TextField fx:id="durationField" promptText="Duration (s)" styleClass="text-field"/>
+                <TextField fx:id="samplesField" promptText="Samples" styleClass="text-field"/>
+            </VBox>
+        </Tab>
+        <Tab text="Channel Management" closable="false">
+            <VBox spacing="10" styleClass="vbox">
+                <ComboBox fx:id="channelSelect" promptText="Select Channel" styleClass="combo-box"/>
+                <CheckBox fx:id="syncChannels" text="Synchronize Channels" styleClass="check-box"/>
+                <Label text="Phase Offset (degrees):" styleClass="label"/>
+                <TextField fx:id="phaseOffsetField" promptText="Phase Offset" styleClass="text-field"/>
+            </VBox>
+        </Tab>
+        <Tab text="Modulation" closable="false">
+            <VBox spacing="10" styleClass="vbox">
+                <ComboBox fx:id="modulationType" promptText="Select Modulation" styleClass="combo-box"/>
+                <HBox spacing="10" styleClass="hbox">
+                    <Label text="Carrier Frequency (Hz):" styleClass="label"/>
+                    <TextField fx:id="carrierFreqField" styleClass="text-field"/>
+                </HBox>
+                <HBox spacing="10" styleClass="hbox">
+                    <Label text="Modulation Index:" styleClass="label"/>
+                    <TextField fx:id="modIndexField" styleClass="text-field"/>
+                </HBox>
+                <CheckBox fx:id="iqSignal" text="Generate IQ Signal" styleClass="check-box"/>
+            </VBox>
+        </Tab>
+        <Tab text="Noise &amp; Distortion" closable="false">
+            <VBox spacing="10" styleClass="vbox, sunken-panel">
+                <Label text="Noise Simulation" styleClass="label"/>
+                <ComboBox fx:id="noiseType" promptText="Select Noise Type" styleClass="combo-box">
+                    <tooltip>
+                        <Tooltip text="Choose noise type to apply"/>
+                    </tooltip>
+                </ComboBox>
+                <HBox spacing="10" styleClass="hbox">
+                    <Label text="Noise Amplitude:" styleClass="label"/>
+                    <TextField fx:id="noiseAmplitudeField" styleClass="text-field">
+                        <tooltip>
+                            <Tooltip text="Amplitude of noise (0 to 0.5)"/>
+                        </tooltip>
+                    </TextField>
+                </HBox>
+                <Button fx:id="importNoiseCsvButton" text="Import Noise CSV" onAction="#importNoiseCsv" styleClass="button">
+                    <tooltip>
+                        <Tooltip text="Import user-defined noise from CSV file"/>
+                    </tooltip>
+                </Button>
+                <Separator/>
+                <Label text="Distortion Simulation" styleClass="label"/>
+                <HBox spacing="10" styleClass="hbox">
+                    <Label text="Jitter Amount (s):" styleClass="label"/>
+                    <TextField fx:id="jitterAmountField" styleClass="text-field">
+                        <tooltip>
+                            <Tooltip text="Timing jitter in seconds (0 to 0.001)"/>
+                        </tooltip>
+                    </TextField>
+                </HBox>
+                <HBox spacing="10" styleClass="hbox">
+                    <Label text="Drift Rate (%/s):" styleClass="label"/>
+                    <TextField fx:id="driftRateField" styleClass="text-field">
+                        <tooltip>
+                            <Tooltip text="Amplitude drift rate per second (0 to 10%)"/>
+                        </tooltip>
+                    </TextField>
+                </HBox>
+                <CheckBox fx:id="quantizationNoise" text="Enable Quantization Noise" styleClass="check-box">
+                    <tooltip>
+                        <Tooltip text="Simulate quantization noise based on resolution"/>
+                    </tooltip>
+                </CheckBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+    <Button fx:id="generateButton" text="Generate Waveform" onAction="#generateWaveform" styleClass="button">
+        <tooltip>
+            <Tooltip text="Generate and display the waveform with current settings"/>
+        </tooltip>
+    </Button>
+</VBox>
