@@ -8,7 +8,7 @@ _This software simulates Arbitrary Waveform Generator (AWG) and is written in Ja
 
 
 
-### 1. Waveform Generation
+### Waveform Generation
 - **Purpose**: Generates the base waveform based on the selected type and parameters.
 - **Logic**:
   - Retrieves parameters from `WaveformData`, including number of samples, sampling rate, frequency, amplitude, and phase.
@@ -30,7 +30,7 @@ _This software simulates Arbitrary Waveform Generator (AWG) and is written in Ja
     - **Quantization**: Rounds values to discrete levels based on the selected resolution (e.g., 8-bit yields 256 levels), with optional quantization noise.
   - Ensures output values are clipped to the range `[-1, 1]` to prevent clipping artifacts.
 
-### 2. Modulation 
+### Modulation 
 - **Purpose**: Applies modulation to the base waveform to simulate communication signals.
 - **Logic**:
   - Processes the generated waveform and applies one of the following modulation types based on user selection:
@@ -43,7 +43,7 @@ _This software simulates Arbitrary Waveform Generator (AWG) and is written in Ja
   - Uses carrier frequency and modulation index from `WaveformData`.
   - Returns the modulated waveform, maintaining the same length as the input.
 
-### 3. Noise Generation
+### Noise Generation
 - **Purpose**: Adds noise to the waveform to simulate real-world signal imperfections.
 - **Logic**:
   - Generates noise based on the selected noise type and amplitude:
@@ -53,7 +53,7 @@ _This software simulates Arbitrary Waveform Generator (AWG) and is written in Ja
   - Adds the generated noise to the waveform, ensuring the combined signal remains within `[-1, 1]`.
   - Skips noise addition if the noise type is "None" or amplitude is zero.
 
-### 4. Main Controller
+### Main Controller
 - **Purpose**: Coordinates user inputs, waveform generation, modulation, noise application, and visualization.
 - **Logic**:
   - **Initialization**: Sets up UI components (e.g., combo boxes for waveform types, sliders, text fields) and binds them to `WaveformData` properties for real-time updates.
@@ -71,7 +71,7 @@ _This software simulates Arbitrary Waveform Generator (AWG) and is written in Ja
     - Enables manual waveform drawing on the canvas when the draw toggle is active, storing points for interpolation.
   - **Error Handling**: Displays alerts for invalid inputs (e.g., negative duration) or processing errors (e.g., CSV parsing failures).
 
-### 5. Data Management 
+### Data Management 
 - **Purpose**: Centralizes all simulation parameters in a single model for consistent access.
 - **Logic**:
   - Stores parameters such as sampling rate, number of samples, duration, amplitude, frequency, modulation settings, and noise configurations.
